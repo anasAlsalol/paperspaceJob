@@ -1,10 +1,10 @@
 #update docker container
 apt-get update -y
-apt-get install wget curl golang -y
+apt-get install wget curl -y
 # Download the Data
-# install goodls
-go get -u github.com/tanaikech/goodls
-goodls -u 'https://drive.google.com/drive/folders/1lE94p1pOqMiGcUgbU9-AjhKAXRbdQpd_?usp=sharing' --overwrite -key "AIzaSyCwL9Rnbt2PisdQYyASSGDTBMKUWcp9cxI"
+wget -O goodls 'https://github.com/tanaikech/goodls/releases/download/v1.2.7/goodls_linux_amd64'
+chmod +x ./goodls
+RUN /bin/sh ./goodls -u 'https://drive.google.com/drive/folders/1lE94p1pOqMiGcUgbU9-AjhKAXRbdQpd_?usp=sharing' --overwrite -key "AIzaSyCwL9Rnbt2PisdQYyASSGDTBMKUWcp9cxI"
 mv Quran_Data_ForBaseModel_5sec quran_data
 cd quran_data/quran
 unzip *.zip
